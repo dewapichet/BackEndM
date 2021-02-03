@@ -1,8 +1,12 @@
 const express = require('express')
 const route = express.Router()
 
-route.get('/', (req, res) => {
-    res.json('welcome users')
-})
+const UserController = require('../controller/UserController')
+
+route.post('/login', UserController.login)
+
+route.post('/register', UserController.register)
+
+route.get('/profile/:id', UserController.profile)
 
 module.exports = route
