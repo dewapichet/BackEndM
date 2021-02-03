@@ -9,16 +9,16 @@ const users = require('./routes/users')
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/admin', {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true
-});
-
-// mongoose.connect(`mongodb://${process.env.USER_MONGODB}:${process.env.PASS_MONGODB}@${process.env.HOST_MONGODB}:${process.env.PORT_MONGODB}/${process.env.DATABASE_MONGODB}`, {
-//     useUnifiedTopology: true, 
+// mongoose.connect('mongodb://localhost:27017/admin', {
 //     useNewUrlParser: true, 
-//     useCreateIndex: true
+//     useUnifiedTopology: true
 // });
+
+mongoose.connect(`mongodb://${process.env.USER_MONGODB}:${process.env.PASS_MONGODB}@${process.env.HOST_MONGODB}:${process.env.PORT_MONGODB}/${process.env.DATABASE_MONGODB}`, {
+    useUnifiedTopology: true, 
+    useNewUrlParser: true, 
+    useCreateIndex: true
+});
 
 
 app.use(cors())
