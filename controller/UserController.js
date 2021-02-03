@@ -4,9 +4,9 @@ const login = async (req, res) => {
     const {user_name, password} = req.body
     const users = await User.find({user_name: user_name}).find({password: password})
     if (users.length > 0) {
-        res.json('welcome')
+        res.json('HelloUser')
     } else {
-        res.json('username or password wrong')
+        res.json('Username And Password Wrong')
     }
 }
 
@@ -14,7 +14,7 @@ const register = async (req, res) => {
     const { first_name, last_name, code_id, tel, address, user_name, password, user_role } = req.body
     const users = new User(req.body)
     await users.save()
-    res.json('success')
+    res.json('Register Success')
 }
 
 const profile = async (req, res) => {
