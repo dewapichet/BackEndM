@@ -3,28 +3,29 @@ const app = express()
 const cors = require('cors')
 const body = require('body-parser')
 require('dotenv').config()
-
-const index = require('./routes/index')
-const users = require('./routes/users')
-
 const mongoose = require('mongoose');
+const passport = require('passport')
 
-mongoose.connect('mongodb://localhost:27017/admin', {
+
+mongoose.connect('mongodb://localhost:27017/Mec', {
     useNewUrlParser: true, 
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 });
-
-// mongoose.connect(`mongodb://${process.env.USER_MONGODB}:${process.env.PASS_MONGODB}@${process.env.HOST_MONGODB}:${process.env.PORT_MONGODB}/${process.env.DATABASE_MONGODB}`, {
-//     useUnifiedTopology: true, 
-//     useNewUrlParser: true, 
-//     useCreateIndex: true
-// });
 
 
 app.use(cors())
 app.use(body())
+app.use(passport.initialize());
 
-app.use('/', index)
-app.use('/users', users)
+const index = require('./routes/index')
+const users = require('./routes/users')
+const works = require('./routes/works')
+
+app.use('/', index);
+app.use('/users', users);
+app.use('/works',works);
+
+
 
 app.listen(process.env.PORT_SERVE, () => console.log(`start: ${process.env.PORT_SERVE}`))
